@@ -1,0 +1,8 @@
+*.pyc
+datasets/
+experiments/
+.DS_Store
+.idea/
+.image/
+.binary/
+*.jpg
