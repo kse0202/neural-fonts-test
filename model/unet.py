@@ -2,9 +2,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
-# import tensorflow as tf
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+import tensorflow as tf
 import numpy as np
 import scipy.misc as misc
 import os
@@ -161,16 +159,18 @@ class UNet(object):
             return tf.nn.sigmoid(fc1), fc1, fc2
 
     def build_model(self, is_training=True, inst_norm=False, no_target_source=False):
-        real_data = tf.placeholder(tf.float32,
+        print('self.batch_size :', self.batch_size)
+        real_data = tf.Variable(tf.float32,
                                    [self.batch_size, self.input_width, self.input_width,
                                     self.input_filters + self.output_filters],
                                    name='real_A_and_B_images')
-        embedding_ids = tf.placeholder(tf.int64, shape=None, name="embedding_ids")
-        no_target_data = tf.placeholder(tf.float32,
+        print('real_data : ', real_data)
+        embedding_ids = tf.Variable(tf.int64, shape=None, name="embedding_ids")
+        no_target_data = tf.Variable(tf.float32,
                                         [self.batch_size, self.input_width, self.input_width,
                                          self.input_filters + self.output_filters],
                                         name='no_target_A_and_B_images')
-        no_target_ids = tf.placeholder(tf.int64, shape=None, name="no_target_embedding_ids")
+        no_target_ids = tf.Variable(tf.int64, shape=None, name="no_target_embedding_ids")
 
         # target images
         real_B = real_data[:, :, :, :self.input_filters]

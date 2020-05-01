@@ -8,9 +8,8 @@ import glob
 import imageio
 import scipy.misc as misc
 import numpy as np
-import io
 # from cStringIO import StringIO
-
+import io
 
 def pad_seq(seq, batch_size):
     # pad the sequence to be the multiples of batch_size
